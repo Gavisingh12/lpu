@@ -37,7 +37,7 @@ const Login = () => {
       <div className="w-full max-w-[400px] space-y-6">
         <div className="flex justify-center mb-6">
           <img 
-            src="public/lovable-uploads/ff719044-2c7c-4fcf-a9ab-b184961e0f62.png" 
+            src="https://ums.lpu.in/lpuums/assets/login/img/logos/seal.svg" 
             alt="UMS Logo" 
             className="h-16"
           />
