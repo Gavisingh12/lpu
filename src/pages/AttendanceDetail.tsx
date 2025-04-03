@@ -1,9 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, Clock, Download } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import Header from "@/components/Header";
 import { studentProfile, attendanceData } from "@/services/mockData";
 import { 
   LineChart, 
@@ -21,12 +19,6 @@ const AttendanceDetail = () => {
   
   return (
     <div className="flex-1 flex flex-col min-h-screen">
-      <Header 
-        studentName={studentProfile.name} 
-        studentId={studentProfile.id} 
-        department={studentProfile.program} 
-      />
-      
       <main className="flex-1 p-6 bg-gray-50">
         <div className="flex items-center mb-6">
           <Link to="/" className="mr-4">

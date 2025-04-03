@@ -1,6 +1,6 @@
-
 import { useState } from "react";
-import { BellIcon, Search, ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { BellIcon, Search, ChevronDown, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface HeaderProps {
   studentName: string;
@@ -19,6 +20,20 @@ interface HeaderProps {
 
 const Header = ({ studentName, studentId, department }: HeaderProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    localStorage.removeItem("isAuthenticated");
+    navigate("/login");
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map(word => word[0])
+      .join("")
+      .toUpperCase();
+  };
 
   return (
     <header className="ums-header justify-between h-16">
@@ -45,9 +60,10 @@ const Header = ({ studentName, studentId, department }: HeaderProps) => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                <span className="text-xs font-medium">{studentName.charAt(0)}</span>
-              </div>
+              <Avatar className="h-8 w-8">
+                <AvatarImage src="/profile-image.jpg" alt={studentName} />
+                <AvatarFallback>{getInitials(studentName)}</AvatarFallback>
+              </Avatar>
               <div className="text-left">
                 <p className="text-sm font-medium">{studentName}</p>
                 <p className="text-xs text-gray-500">{studentId}</p>
@@ -58,10 +74,13 @@ const Header = ({ studentName, studentId, department }: HeaderProps) => {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate("/profile")}>Profile</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate("/settings")}>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-500">Sign out</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut} className="text-red-500">
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

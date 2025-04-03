@@ -1,37 +1,95 @@
-
 // Student profile
 export const studentProfile = {
+  vid: "12303557",
   name: "Gavinder Singh",
-  id: "12303567",
+  dateOfBirth: "04/15/2005",
+  category: "GEN",
+  gender: "M",
   section: "K23GN",
   program: "B.Tech. (Computer Science and Engineering)",
   semester: "P132",
-  email: "gavinder.singh@example.edu",
-  phone: "+91 9876543210",
+  
+  // Contact Information
+  email: "rathorebanna4152@gmail.com",
+  lpuEmail: "gavinder.singh23@lpu.in",
+  phone: "9680095920",
+  landline: "",
+
+  // Family Information
+  fatherName: "Bhawani Singh",
+  fatherMobile: "9116350746",
+  fatherEmail: "",
+  motherName: "Seema Kanwar",
+  motherMobile: "",
+  emergencyContact: "",
+
+  // Permanent Address
+  permanentAddress: {
+    addressLine1: "C-96 Priyanshu Vihar, Sirsi",
+    addressLine2: "",
+    townCity: "Jaipur (Rajasthan)",
+    district: "Jaipur",
+    stateUT: "Rajasthan",
+    country: "India",
+    pinCode: "302012"
+  },
+
+  // Corresponding Address (same as permanent in this case)
+  correspondingAddress: {
+    addressLine1: "C-96 Priyanshu Vihar, Sirsi",
+    addressLine2: "",
+    townCity: "Jaipur (Rajasthan)",
+    district: "Jaipur",
+    stateUT: "Rajasthan",
+    country: "India",
+    pinCode: "302012"
+  },
+
+  // Paying Guest Address (empty in this case)
+  pgAddress: {
+    hnoBuilding: "",
+    colony: "",
+    townCity: "",
+    district: "",
+    stateUT: "",
+    country: ""
+  },
+
+  // International Student Details (empty in this case)
+  international: {
+    countryName: "",
+    passportNo: "",
+    passportIssueDate: "",
+    passportExpiryDate: "",
+    visaNo: "",
+    visaIssueDate: "",
+    visaExpiryDate: "",
+    nationalIdNo: "",
+    froPermitNo: "",
+    froIssueDate: "",
+    froExpiryDate: ""
+  },
+
   enrollmentDate: "2021-08-15",
   expectedGraduation: "2025-05-30",
-  advisor: "Dr. Amit Kumar",
+  advisor: "Dr. Amit Kumar"
 };
 
 // CGPA data by semester
 export const cgpaData = [
-  { semester: "Semester 1", gpa: 7.8, credits: 24, status: "Completed" },
-  { semester: "Semester 2", gpa: 7.6, credits: 24, status: "Completed" },
-  { semester: "Semester 3", gpa: 6.9, credits: 24, status: "Completed" },
+  { semester: "Semester 1", gpa: 6.95, credits: 24, status: "Completed" },
+  { semester: "Semester 2", gpa: 6.90, credits: 24, status: "Completed" },
+  { semester: "Semester 3", gpa: 6.50, credits: 24, status: "Completed" },
   { semester: "Current (Sem 4)", gpa: 0, credits: 24, status: "Awaited" },
 ];
 
 // Calculate CGPA
 export const calculateCGPA = () => {
   const completedSemesters = cgpaData.filter(sem => sem.status === "Completed");
-  let totalPoints = 0;
-  let totalCredits = 0;
+  const totalPoints = completedSemesters.reduce((sum, sem) => sum + (sem.gpa * sem.credits), 0);
+  const totalCredits = completedSemesters.reduce((sum, sem) => sum + sem.credits, 0);
   
-  completedSemesters.forEach(sem => {
-    totalPoints += sem.gpa * sem.credits;
-    totalCredits += sem.credits;
-  });
-  
+  // Calculate CGPA to 2 decimal places
   return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "N/A";
 };
 
@@ -55,83 +113,61 @@ export const courseGrades = [
     semester: "Semester 3",
     status: "Completed",
     courses: [
-      { 
-        code: "CSE202",
-        name: "OBJECT ORIENTED PROGRAMMING",
-        credits: 3,
-        grade: "B+",
-        gpa: 7.5,
-        marks: [
-          { type: "Attendance Marks", marks: "4/5", weightage: "4/5" },
-          { type: "Continuous Assessment", marks: "55/100", weightage: "28/50" },
-          { type: "Practical End Term", marks: "62/100", weightage: "28/45" }
-        ]
-      },
-      { 
-        code: "CSE205",
-        name: "DATA STRUCTURES AND ALGORITHMS",
-        credits: 3,
-        grade: "B",
-        gpa: 7.0,
-        marks: [
-          { type: "Attendance Marks", marks: "5/5", weightage: "5/5" },
-          { type: "Continuous Assessment", marks: "48/100", weightage: "24/50" },
-          { type: "Practical End Term", marks: "41/100", weightage: "19/45" }
-        ]
-      },
-      // ... Additional semester 3 courses
+      { code: "CSE101", name: "COMPUTER PROGRAMMING", credits: 3, grade: "B", gpa: 7.0 },
+      { code: "CSE121", name: "ORIENTATION TO COMPUTING-II", credits: 3, grade: "A+", gpa: 10.0 },
+      { code: "CSE320", name: "SOFTWARE ENGINEERING", credits: 3, grade: "C", gpa: 6.0 },
+      { code: "INT306", name: "DATABASE MANAGEMENT SYSTEM", credits: 3, grade: "A+", gpa: 10.0 },
+      { code: "MEC136", name: "ENGINEERING GRAPHICS AND DIGITAL FABRICATION", credits: 3, grade: "D", gpa: 5.0 },
+      { code: "MTH401", name: "DISCRETE MATHEMATICS", credits: 3, grade: "B", gpa: 7.0 },
+      { code: "PEL121", name: "COMMUNICATION SKILLS-I", credits: 3, grade: "A", gpa: 9.0 },
+      { code: "PHY110", name: "ENGINEERING PHYSICS", credits: 3, grade: "B", gpa: 7.0 }
     ]
   },
   {
     semester: "Semester 2",
     status: "Completed",
     courses: [
-      { 
-        code: "CSE101",
-        name: "COMPUTER PROGRAMMING",
-        credits: 3,
-        grade: "B+",
-        gpa: 7.5,
-        marks: [
-          { type: "Attendance Marks", marks: "4/5", weightage: "4/5" },
-          { type: "Continuous Assessment", marks: "44/100", weightage: "22/50" },
-          { type: "Practical End Term", marks: "53/100", weightage: "24/45" }
-        ]
-      },
-      // ... Additional semester 2 courses
+      { code: "CSE202", name: "OBJECT ORIENTED PROGRAMMING", credits: 3, grade: "B+", gpa: 8.0 },
+      { code: "CSE205", name: "DATA STRUCTURES AND ALGORITHM", credits: 3, grade: "C", gpa: 6.0 },
+      { code: "CSE211", name: "COMPUTER ORGANIZATION DESIGN", credits: 3, grade: "B", gpa: 7.0 },
+      { code: "CSE306", name: "COMPUTER NETWORKS", credits: 3, grade: "A", gpa: 9.0 },
+      { code: "CSE307", name: "INTERNETWORKING ESSENTIALS", credits: 3, grade: "A", gpa: 9.0 },
+      { code: "GEN231", name: "COMMUNITY DEVELOPMENT PROJECT", credits: 3, grade: "B+", gpa: 8.0 },
+      { code: "MTH302", name: "PROBABILITY AND STATICS", credits: 3, grade: "B", gpa: 7.0 },
+      { code: "PEL132", name: "COMMUNITY SKILLS-II", credits: 3, grade: "B+", gpa: 8.0 }
     ]
   },
   {
     semester: "Semester 1",
     status: "Completed",
     courses: [
-      { 
-        code: "CHE110",
-        name: "ENVIRONMENTAL STUDIES",
-        credits: 3,
-        grade: "A",
-        gpa: 9.0,
-        marks: [
-          { type: "Attendance Marks", marks: "5/5", weightage: "5/5" },
-          { type: "Continuous Assessment", marks: "68/100", weightage: "28/40" },
-          { type: "Objective Type End Term", marks: "31/60", weightage: "19/35" },
-          { type: "Objective Type Mid Term", marks: "20/30", weightage: "14/20" }
-        ]
-      },
-      // ... Additional semester 1 courses
+      { code: "CHE110", name: "ENVIRONMENTAL STUDIES", credits: 3, grade: "B+", gpa: 8.0 },
+      { code: "CSE111", name: "ORIENTATION OF COMPUTING", credits: 3, grade: "B+", gpa: 8.0 },
+      { code: "CSE326", name: "INTERNET PROGRAMMING LABORATORY", credits: 3, grade: "A", gpa: 9.0 },
+      { code: "CSE249", name: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING", credits: 3, grade: "B+", gpa: 8.0 },
+      { code: "CSE279", name: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING LABORATORY", credits: 3, grade: "B+", gpa: 8.0 },
+      { code: "INT108", name: "PYTHON PROGRAMMING", credits: 3, grade: "A", gpa: 9.0 },
+      { code: "MTH174", name: "ENGINEERING MATHEMATICS", credits: 3, grade: "C", gpa: 6.0 },
+      { code: "PES318", name: "SOFT SKILLS-I", credits: 3, grade: "B+", gpa: 8.0 }
     ]
   }
 ];
 
 // Adding missing exports that Dashboard.tsx requires
 export const attendanceData = {
-  overall: 85, // Overall attendance percentage
-  subjects: [
-    { name: "PROGRAMMING IN JAVA", attendance: 90 },
-    { name: "OPERATING SYSTEMS", attendance: 82 },
-    { name: "DATA SCIENCE TOOLBOX: PYTHON PROGRAMMING", attendance: 88 },
-    { name: "ARTIFICIAL INTELLIGENCE ESSENTIALS", attendance: 78 },
-    { name: "DESIGN AND ANALYSIS OF ALGORITHMS", attendance: 86 }
+  overall: 79,
+  courses: [
+    { code: "CSE310", name: "PROGRAMMING IN JAVA", attendance: 82, classes: 45, present: 37 },
+    { code: "CSE316", name: "OPERATING SYSTEMS", attendance: 76, classes: 45, present: 34 },
+    { code: "INT375", name: "DATA SCIENCE TOOLBOX: PYTHON PROGRAMMING", attendance: 80, classes: 45, present: 36 },
+    { code: "INT428", name: "ARTIFICIAL INTELLIGENCE ESSENTIALS", attendance: 73, classes: 45, present: 33 },
+    { code: "CSE408", name: "DESIGN AND ANALYSIS OF ALGORITHMS", attendance: 84, classes: 45, present: 38 }
+  ],
+  monthly: [
+    { month: "January", attendance: 82 },
+    { month: "February", attendance: 80 },
+    { month: "March", attendance: 77 },
+    { month: "April", attendance: 77 }
   ]
 };
 
@@ -185,3 +221,107 @@ export const announcements = [
     date: "2025-03-30"
   }
 ];
+
+export const assignmentData = {
+  assignments: [
+    {
+      id: 1,
+      courseCode: "CSE316",
+      courseName: "OPERATING SYSTEMS",
+      type: "Project",
+      status: "Pending",
+      maxMarks: 30,
+      obtainedMarks: null,
+      percentage: null,
+      reason: "Not yet evaluated"
+    },
+    {
+      id: 2,
+      courseCode: "CSE316",
+      courseName: "OPERATING SYSTEMS",
+      type: "Test",
+      status: "Evaluated",
+      maxMarks: 30,
+      obtainedMarks: 24.25,
+      percentage: 80.8,
+      reason: null
+    },
+    {
+      id: 3,
+      courseCode: "CSE408",
+      courseName: "DESIGN AND ANALYSIS OF ALGORITHMS",
+      type: "Test",
+      status: "Evaluated",
+      maxMarks: 30,
+      obtainedMarks: 17.5,
+      percentage: 58,
+      reason: null
+    },
+    {
+      id: 4,
+      courseCode: "INT217",
+      courseName: "INTRODUCTION TO DATA MANAGEMENT",
+      type: "Test",
+      status: "Evaluated",
+      maxMarks: 30,
+      obtainedMarks: 27,
+      percentage: 90,
+      reason: null
+    },
+    {
+      id: 5,
+      courseCode: "INT217",
+      courseName: "INTRODUCTION TO DATA MANAGEMENT",
+      type: "Project",
+      status: "Pending",
+      maxMarks: 100,
+      obtainedMarks: null,
+      percentage: null,
+      reason: "Not yet evaluated"
+    },
+    {
+      id: 6,
+      courseCode: "INT375",
+      courseName: "DATA SCIENCE TOOLBOX: PYTHON PROGRAMMING",
+      type: "Test",
+      status: "Evaluated",
+      maxMarks: 30,
+      obtainedMarks: 25,
+      percentage: 84.6,
+      reason: null
+    },
+    {
+      id: 7,
+      courseCode: "PEA305",
+      courseName: "ANALYTICAL SKILLS-I",
+      type: "Test",
+      status: "Evaluated",
+      maxMarks: 30,
+      obtainedMarks: 14,
+      percentage: 46.7,
+      reason: null
+    },
+    {
+      id: 8,
+      courseCode: "INT428",
+      courseName: "AI ESSENTIALS",
+      type: "Test",
+      status: "Evaluated",
+      maxMarks: 30,
+      obtainedMarks: 20,
+      percentage: 74,
+      reason: null
+    },
+    {
+      id: 9,
+      courseCode: "CSE325",
+      courseName: "OPERATING SYSTEM LABORATORY",
+      type: "P1: Intro to Linux commands",
+      status: "Evaluated",
+      maxMarks: 100,
+      obtainedMarks: 72,
+      percentage: 72,
+      reason: null
+    }
+  ]
+};

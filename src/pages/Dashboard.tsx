@@ -1,9 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Calendar, Clock, FileText } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import Header from "@/components/Header";
 import { 
   studentProfile, 
   calculateCGPA, 
@@ -18,12 +16,6 @@ const Dashboard = () => {
   
   return (
     <div className="flex-1 flex flex-col min-h-screen">
-      <Header 
-        studentName={studentProfile.name} 
-        studentId={studentProfile.id} 
-        department={studentProfile.program} 
-      />
-      
       <main className="flex-1 p-6 bg-gray-50">
         <div className="mb-6">
           <h2 className="text-2xl font-bold">Welcome, {studentProfile.name}</h2>
